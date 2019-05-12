@@ -1,6 +1,6 @@
 package com.example.h2.config;
 
-import com.example.h2.user.infrastructure.UserRegister;
+import com.example.h2.user.domain.UserRegister;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

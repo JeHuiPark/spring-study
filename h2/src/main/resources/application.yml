@@ -1,21 +1,31 @@
 spring:
   profiles:
     active: local
-
----
-
-spring:
-  profiles: local
-
   datasource:
-    platform: h2
-    url: jdbc:h2:tcp://localhost:9093/mem:management_db_9093
-    driver-class-name: org.h2.Driver
+    #platform: h2 # schema-h2.sql, data-h2.sql
+    continue-on-error: true
+    url: jdbc:log4jdbc:h2:tcp://localhost:9093/mem:management_db_9093
+    #url: jdbc:h2:tcp://localhost:9093/mem:management_db_9093
+    #driver-class-name: org.h2.Driver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username:
     password:
 
-  jpa:
-    database-platform: H2
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+    jpa:
+      database-platform: H2
+      show-sql: false
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          format_sql:
+
+logging:
+  level:
+    root: info
+    jdbc:
+      sqlonly: info
+      sqltiming: off
+      audit: off
+      resultset: off
+      resultsettable: off

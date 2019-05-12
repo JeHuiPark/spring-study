@@ -1,7 +1,5 @@
-package com.example.h2.user.infrastructure;
+package com.example.h2.user.domain;
 
-import com.example.h2.user.domain.User;
-import com.example.h2.user.domain.UserRepository;
 import java.util.Random;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
