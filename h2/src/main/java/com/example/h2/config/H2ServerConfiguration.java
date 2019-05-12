@@ -33,12 +33,8 @@ public class H2ServerConfiguration {
 	@Bean
 	@ConfigurationProperties("spring.datasource")
 	public DataSource dataSource() throws SQLException {
-			Server server = Server.createTcpServer(
-					"-tcp",
-					"-tcpAllowOthers",
-					"-ifNotExists",
-					"-tcpPort", "9093", "-key", "mem:management_db_9093", "~/h2_test").start();
-
+		//Server server = adviceRun(9093, "external_db_name", "dbname", FilePath.absolute);
+		Server server = defaultRun(9093);
 		if(server.isRunning(true)){
 			log.info("server run success");
 		}
@@ -47,7 +43,42 @@ public class H2ServerConfiguration {
 		return new org.apache.tomcat.jdbc.pool.DataSource();
 	}
 
+	/**
+	 *
+	 * @param port
+	 * @param externalDbName
+	 * @param dbname
+	 * @param db_store
+	 * @return
+	 * @throws SQLException
+	 */
+	private Server adviceRun(int port, String externalDbName, String dbname, FilePath db_store) throws SQLException {
+		return Server.createTcpServer(
+				"-tcp",
+				"-tcpAllowOthers",
+				"-ifNotExists",
+				"-tcpPort", port+"", "-key", externalDbName, db_store.value2(dbname)).start();
+	}
 
+	private Server defaultRun(int port) throws SQLException {
+		return Server.createTcpServer(
+				"-tcp",
+				"-tcpAllowOthers",
+				"-ifNotExists",
+				"-tcpPort", port+"").start();
+	}
+
+	enum FilePath {
+		absolute("~/"),
+		relative("./");
+		String prefix;
+		FilePath(String prefix){
+			this.prefix = prefix;
+		}
+		public String value2(String dbname){
+			return prefix + dbname;
+		}
+	}
 }
 
 @RequiredArgsConstructor
