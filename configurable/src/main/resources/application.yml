@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: local
+
+---
+
+spring:
+  profiles: local
+
+  datasource:
+    #platform: h2 나중에 수정
+    continue-on-error: true
+    url: jdbc:h2:tcp://localhost:9093/mem:management_db_9093
+    driver-class-name: org.h2.Driver
+    username:
+    password:
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop

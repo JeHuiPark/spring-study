@@ -1,0 +1,48 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.4.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.apache.tomcat:tomcat-jdbc:9.0.10'
+    implementation 'com.h2database:h2'
+    
+//    implementation 'org.springframework:spring-tx'
+    implementation 'org.springframework:spring-instrument'
+//    implementation 'org.springframework:spring-aspects'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+def ltwPath = "C:\\Users\\95123\\.gradle\\caches\\modules-2\\files-2.1\\org.springframework\\spring-instrument\\5.1.6.RELEASE\\3e9421034c705611797c6ffe53edb0664b141e97\\spring-instrument-5.1.6.RELEASE.jar"
+
+test.doFirst {
+    jvmArgs "-javaagent:${ltwPath}"
+}
+
+bootRun.doFirst {
+    jvmArgs "-javaagent:${ltwPath}"
+}
