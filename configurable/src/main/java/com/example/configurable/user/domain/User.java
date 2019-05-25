@@ -23,8 +23,11 @@ import org.springframework.beans.factory.annotation.Configurable;
 public class User {
 
   @Transient
-  @Autowired
-  UserRepository userRepository;
+  private  UserRepository userRepository;
+
+  public void setUserRepository(UserRepository userRepository){
+    this.userRepository = userRepository;
+  }
 
   @Id
   @GeneratedValue
