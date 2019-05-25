@@ -3,7 +3,10 @@
 
 ## 2019.05.21
   **LTW를 적용하여 ~~new 연산자를 이용하여 생성된 객체도 IOC 대상에 포함?~~ 아니 약간 다른 개념인가 ..? **
-  IOC 대상에 포함되진 않는다. 다만, @Configurable 어노테이션이 달린 클래스는 로드타임에 위빙되어 new 연산자를 통해 객체화 되는 시점에 스프링의 AOP 모듈에 의해 bean 팩토리로부터 DI(Dependency Injection)받는게 가능해짐
+  > IOC 대상에 포함되진 않는다. 즉, 객체에 대한 제어는 프레임 워크가 아닌 개발자가 직접한다.
+  다만, @Configurable 어노테이션이 달린 클래스는 로드타임에 위빙되어 new 연산자를 통해 객체화 되는 시점에 스프링의 AOP 모듈에 의해 bean 팩토리로부터 DI(Dependency Injection)받는게 가능해진다.
+  절대 스프링의 bean과 헷갈려서는 안된다.
+  
   
   실제 DI 받는 과정
   ![image](https://user-images.githubusercontent.com/25237661/58366604-cc47b800-7f0f-11e9-9f9c-d22e6a9846e8.png)
