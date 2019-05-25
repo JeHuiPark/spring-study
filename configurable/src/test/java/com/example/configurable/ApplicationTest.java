@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Github : https://github.com/JeHuiPark
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes=ConfigurableApplication.class)
+@SpringBootTest
 public class ApplicationTest {
 
   @Autowired
@@ -38,7 +38,6 @@ public class ApplicationTest {
 
     User persistUser = userRepository.findByUserId(userId);
     persistUser.statusChange("3");
-
     User test = userRepository.findByUserId(userId);
     assert "3".equals(test.getStatus());
   }

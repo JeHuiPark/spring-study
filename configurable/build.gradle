@@ -35,14 +35,22 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
 }
 
-def ltwPath = "C:\\Users\\95123\\.gradle\\caches\\modules-2\\files-2.1\\org.springframework\\spring-instrument\\5.1.6.RELEASE\\3e9421034c705611797c6ffe53edb0664b141e97\\spring-instrument-5.1.6.RELEASE.jar"
-
 test.doFirst {
-    jvmArgs "-javaagent:${ltwPath}"
+    def instrumentLib = instrumentLibPath()
+    jvmArgs "-javaagent:${instrumentLib}"
 }
 
 bootRun.doFirst {
-    jvmArgs "-javaagent:${ltwPath}"
+    def instrumentLib = instrumentLibPath()
+    jvmArgs "-javaagent:${instrumentLib}"
+}
+
+File instrumentLibPath(){
+    return sourceSets.getByName("main").compileClasspath.find {
+        cls -> return cls.getName().contains("spring-instrument")
+    }
 }
