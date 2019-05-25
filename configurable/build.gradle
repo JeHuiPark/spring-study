@@ -27,9 +27,7 @@ dependencies {
     implementation 'org.apache.tomcat:tomcat-jdbc:9.0.10'
     implementation 'com.h2database:h2'
     
-//    implementation 'org.springframework:spring-tx'
     implementation 'org.springframework:spring-instrument'
-//    implementation 'org.springframework:spring-aspects'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'

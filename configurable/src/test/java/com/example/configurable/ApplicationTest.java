@@ -3,6 +3,7 @@ package com.example.configurable;
 import com.example.configurable.user.domain.User;
 import com.example.configurable.user.domain.UserRepository;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,4 +2,5 @@
   <weaver options="-Xset:weaveJavaxPackages=true" >
     <include within="com.example.configurable..*"/>
   </weaver>
+  <aspect name="com.example.configurable.aop.UserInitAspect"/>
 </aspectj>

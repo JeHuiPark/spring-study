@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowire;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 /**
@@ -27,6 +26,7 @@ public class User {
 
   public void setUserRepository(UserRepository userRepository){
     this.userRepository = userRepository;
+    log.info("Auto Dependency Injection");
   }
 
   @Id
