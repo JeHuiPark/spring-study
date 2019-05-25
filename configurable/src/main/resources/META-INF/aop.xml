@@ -1,0 +1,5 @@
+<aspectj>
+  <weaver options="-Xset:weaveJavaxPackages=true" >
+    <include within="com.example.configurable..*"/>
+  </weaver>
+</aspectj>
