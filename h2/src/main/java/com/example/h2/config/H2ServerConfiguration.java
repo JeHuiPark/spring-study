@@ -1,6 +1,7 @@
 package com.example.h2.config;
 
 import com.example.h2.user.domain.UserRegister;
+import com.zaxxer.hikari.HikariDataSource;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -31,7 +32,7 @@ public class H2ServerConfiguration {
 	 * @throws SQLException
 	 */
 	@Bean
-	@ConfigurationProperties("spring.datasource")
+	@ConfigurationProperties("spring.datasource.hikari")
 	public DataSource dataSource() throws SQLException {
 		//Server server = adviceRun(9093, "external_db_name", "dbname", FilePath.absolute);
 		Server server = defaultRun(9093);
@@ -40,7 +41,7 @@ public class H2ServerConfiguration {
 		}
 		log.info("h2 server url = {}", server.getURL());
 
-		return new org.apache.tomcat.jdbc.pool.DataSource();
+		return new HikariDataSource();
 	}
 
 	/**

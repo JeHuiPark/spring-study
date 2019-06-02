@@ -2,14 +2,10 @@ spring:
   profiles:
     active: local
   datasource:
-    #platform: h2 # schema-h2.sql, data-h2.sql
     continue-on-error: true
-    url: jdbc:log4jdbc:h2:tcp://localhost:9093/mem:management_db_9093
-    #url: jdbc:h2:tcp://localhost:9093/mem:management_db_9093
-    #driver-class-name: org.h2.Driver
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    username:
-    password:
+    hikari:
+      jdbc-url: jdbc:log4jdbc:h2:tcp://localhost:9093/mem:management_db_9093
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
   jpa:
     database-platform: H2
     show-sql: false
@@ -28,3 +24,4 @@ logging:
       audit: off
       resultset: off
       resultsettable: off
+      connection: off
